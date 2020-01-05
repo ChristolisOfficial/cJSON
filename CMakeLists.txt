@@ -255,7 +255,9 @@ if(ENABLE_CJSON_TEST)
 endif()
 
 #Create the uninstall target
-add_custom_target(uninstall "${CMAKE_COMMAND}" -P "${PROJECT_SOURCE_DIR}/library_config/uninstall.cmake")
+if(NOT TARGET uninstall) #This saves a lot of lives
+    add_custom_target(uninstall "${CMAKE_COMMAND}" -P "${PROJECT_SOURCE_DIR}/library_config/uninstall.cmake")
+endif()
 
 # Enable the use of locales
 option(ENABLE_LOCALES "Enable the use of locales" ON)
